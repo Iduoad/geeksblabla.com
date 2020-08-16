@@ -1,13 +1,13 @@
 ---
-date: 2019-08-22
+date: 2020-02-16
 time: 21h
 duration: "1:00"
-title: "Freelancing in Morocco"
-tags: ["freelance"]
-isNext: false
+title: "Side Projects & Indie Hacking"
+tags: ["Indie Hacker", "dev", "startup"]
+isNext: true
 published: false
 url:
-podcastUrl:
+audio:
 ---
 
 ...
