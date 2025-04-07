@@ -6,6 +6,7 @@ on:
     branches:
       - master
       - fix/fix-youtube-to-spotify
+      - patch-8
     # paths:
     #   - "episodes/**.md"
 
