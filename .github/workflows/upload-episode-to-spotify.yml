@@ -43,24 +43,24 @@ jobs:
           cookies: ${{ secrets.YOUTUBE_COOKIES }}
           enable: false
 
-      - name: Upload Episode from YouTube To Spotify 1
-        continue-on-error: true
-        if: steps.check-file.outputs.exists == 'true'
-        uses: Schroedinger-Hat/youtube-to-spotify@v2.5.0
-        env:
-          SPOTIFY_EMAIL: ${{ secrets.ANCHOR_EMAIL }}
-          SPOTIFY_PASSWORD: ${{ secrets.ANCHOR_PASSWORD }}
-          EPISODE_PATH: /github/workspace
-          # COOKIES_FILE: "~/.cache/yt-dlp/youtube/cookies.txt"
-          SAVE_AS_DRAFT: true
-          LOAD_THUMBNAIL: true
-          URL_IN_DESCRIPTION: true
-          EPISODE_FILE: missed-episode.json
+      # - name: Upload Episode from YouTube To Spotify 1
+      #   continue-on-error: true
+      #   if: steps.check-file.outputs.exists == 'true'
+      #   uses: Schroedinger-Hat/youtube-to-spotify@v2.5.0
+      #   env:
+      #     SPOTIFY_EMAIL: ${{ secrets.ANCHOR_EMAIL }}
+      #     SPOTIFY_PASSWORD: ${{ secrets.ANCHOR_PASSWORD }}
+      #     EPISODE_PATH: /github/workspace
+      #     # COOKIES_FILE: "~/.cache/yt-dlp/youtube/cookies.txt"
+      #     SAVE_AS_DRAFT: true
+      #     LOAD_THUMBNAIL: true
+      #     URL_IN_DESCRIPTION: true
+      #     EPISODE_FILE: missed-episode.json
           
       - name: Upload Episode from YouTube To Spotify 2
         continue-on-error: true
         if: steps.check-file.outputs.exists == 'true'
-        uses: iduoad/youtube-to-spotify@main
+        uses: iduoad/youtube-to-spotify@feat/cookies
         env:
           SPOTIFY_EMAIL: ${{ secrets.ANCHOR_EMAIL }}
           SPOTIFY_PASSWORD: ${{ secrets.ANCHOR_PASSWORD }}
@@ -71,20 +71,20 @@ jobs:
           URL_IN_DESCRIPTION: true
           EPISODE_FILE: missed-episode.json
 
-      - name: Upload Episode from YouTube To Spotify 3
-        continue-on-error: true
-        if: steps.check-file.outputs.exists == 'true'
-        uses: Schroedinger-Hat/youtube-to-spotify@v2.5.0
-        with:
-          entrypoint: /bin/sh
-          args: -c "pwd && ls -la && npm start"
-        env:
-          SPOTIFY_EMAIL: ${{ secrets.ANCHOR_EMAIL }}
-          SPOTIFY_PASSWORD: ${{ secrets.ANCHOR_PASSWORD }}
-          EPISODE_PATH: /github/workspace
-          # COOKIES_FILE: "~/.cache/yt-dlp/youtube/cookies.txt"
-          SAVE_AS_DRAFT: true
-          LOAD_THUMBNAIL: true
-          URL_IN_DESCRIPTION: true
-          EPISODE_FILE: missed-episode.json
+      # - name: Upload Episode from YouTube To Spotify 3
+      #   continue-on-error: true
+      #   if: steps.check-file.outputs.exists == 'true'
+      #   uses: Schroedinger-Hat/youtube-to-spotify@v2.5.0
+      #   with:
+      #     entrypoint: /bin/sh
+      #     args: -c "pwd && ls -la && npm start"
+      #   env:
+      #     SPOTIFY_EMAIL: ${{ secrets.ANCHOR_EMAIL }}
+      #     SPOTIFY_PASSWORD: ${{ secrets.ANCHOR_PASSWORD }}
+      #     EPISODE_PATH: /github/workspace
+      #     # COOKIES_FILE: "~/.cache/yt-dlp/youtube/cookies.txt"
+      #     SAVE_AS_DRAFT: true
+      #     LOAD_THUMBNAIL: true
+      #     URL_IN_DESCRIPTION: true
+      #     EPISODE_FILE: missed-episode.json
 
