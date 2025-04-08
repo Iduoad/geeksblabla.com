@@ -62,10 +62,8 @@ jobs:
         if: steps.check-file.outputs.exists == 'true'
         uses: Schroedinger-Hat/youtube-to-spotify@v2.5.0
         with:
-          entrypoint: sh -c
-          args: |
-            pwd && 
-            ls -la
+          entrypoint: /bin/sh
+          args: -c "pwd && ls -la"
         env:
           SPOTIFY_EMAIL: ${{ secrets.ANCHOR_EMAIL }}
           SPOTIFY_PASSWORD: ${{ secrets.ANCHOR_PASSWORD }}
