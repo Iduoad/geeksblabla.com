@@ -46,7 +46,7 @@ jobs:
       - name: Upload Episode from YouTube To Spotify 1
         continue-on-error: true
         if: steps.check-file.outputs.exists == 'true'
-        uses: Schroedinger-Hat/youtube-to-spotify@2.5.0
+        uses: Schroedinger-Hat/youtube-to-spotify@v2.5.0
         env:
           SPOTIFY_EMAIL: ${{ secrets.ANCHOR_EMAIL }}
           SPOTIFY_PASSWORD: ${{ secrets.ANCHOR_PASSWORD }}
@@ -60,7 +60,7 @@ jobs:
       - name: Upload Episode from YouTube To Spotify 1
         continue-on-error: true
         if: steps.check-file.outputs.exists == 'true'
-        uses: Schroedinger-Hat/youtube-to-spotify@2.5.0
+        uses: Schroedinger-Hat/youtube-to-spotify@v2.5.0
         with:
           entrypoint: sh -c
           args: |
