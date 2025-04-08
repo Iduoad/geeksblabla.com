@@ -37,12 +37,42 @@ jobs:
             echo "exists=false" >> $GITHUB_OUTPUT
           fi
 
+      - name: Inspect Docker images
+        run: |
+          docker images
+          
+      - name: Print environment variables
+        run: |
+          env | sort
+
+      - name: Debug environment before action
+        run: |
+          echo "Current directory: $(pwd)"
+          ls -la
+          echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
+          echo "Repository contents:"
+          find $GITHUB_WORKSPACE -type f -name "*.js" | head -n 10
+
       - name: Setup yt-dlp YouTube cookies
         uses: AnimMouse/setup-yt-dlp/cookies@v3
         with:
           cookies: ${{ secrets.YOUTUBE_COOKIES }}
           enable: false
 
+      - name: Upload Episode from YouTube To Spotify 1
+        continue-on-error: true
+        if: steps.check-file.outputs.exists == 'true'
+        uses: Schroedinger-Hat/youtube-to-spotify@v2.5.0
+        env:
+          SPOTIFY_EMAIL: ${{ secrets.ANCHOR_EMAIL }}
+          SPOTIFY_PASSWORD: ${{ secrets.ANCHOR_PASSWORD }}
+          EPISODE_PATH: /github/workspace
+          # COOKIES_FILE: "~/.cache/yt-dlp/youtube/cookies.txt"
+          SAVE_AS_DRAFT: true
+          LOAD_THUMBNAIL: true
+          URL_IN_DESCRIPTION: true
+          EPISODE_FILE: missed-episode.json
+          
       - name: Upload Episode from YouTube To Spotify
         if: steps.check-file.outputs.exists == 'true'
         uses: yjose/youtube-to-spotify@v2.6.0
